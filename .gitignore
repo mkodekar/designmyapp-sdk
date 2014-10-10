@@ -1,0 +1,17 @@
+target
+**/.DS_Store
+
+# Intellij
+*.iml
+.idea/
+out
+
+# Eclipse
+.classpath
+.settings
+.project
+
+.tmp/
+**/*.orig
+
+

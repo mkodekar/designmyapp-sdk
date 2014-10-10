@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- Project descriptor -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mobi.designmyapp</groupId>
+  <artifactId>designmyapp-sdk</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>DesignMyApp SDK</name>
+  <description>This maven artifact contains all classes needed to develop DesignMyApp Templates.</description>
+  <url>http://developer.designmyapp.mobi</url>
+  <scm>
+    <url>http://github.com/e-biz/designmyapp-sdk/</url>
+    <connection>scm:git:git://github.com/e-biz/designmyapp-sdk.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/e-biz/designmyapp-sdk.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <!-- Project properties -->
+  <properties>
+    <java.version>1.7</java.version>
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <maven-release-plugin.version>2.5</maven-release-plugin.version>
+    <designmyapp-common.version>1.0.0</designmyapp-common.version>
+  </properties>
+
+  <!-- Project dependencies -->
+  <dependencies>
+    <dependency>
+      <groupId>mobi.designmyapp</groupId>
+      <artifactId>designmyapp-common</artifactId>
+      <version>${designmyapp-common.version}</version>
+    </dependency>
+  </dependencies>
+
+  <!-- Project build configuration -->
+  <build>
+    <plugins>
+      <!-- Maven release plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <pushChanges>false</pushChanges>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
+      <!-- Maven compiler plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      <!-- Maven Jar assembly plugin -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
