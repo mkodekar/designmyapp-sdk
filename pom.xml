@@ -14,6 +14,17 @@
     <developerConnection>scm:git:ssh://git@github.com/e-biz/designmyapp-sdk.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+  <distributionManagement>
+    <!-- Define the urls in your settings.xml -->
+    <repository>
+      <id>releases</id>
+      <url>${releases.repository.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>${snapshots.repository.url}</url>
+    </snapshotRepository>
+  </distributionManagement>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
