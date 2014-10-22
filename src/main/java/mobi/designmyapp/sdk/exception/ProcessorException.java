@@ -12,7 +12,38 @@ package mobi.designmyapp.sdk.exception;
  */
 public class ProcessorException extends RuntimeException {
 
+  private static final long serialVersionUID = 5838950555025940381L;
+
+  /**
+   * Constructs a new processor exception with {@code null} as its
+   * detail message and cause.
+   */
+  public ProcessorException() {
+  }
+
+  /**
+   * Constructs a new processor exception with the specified detail message and no cause.
+   */
   public ProcessorException(String message) {
     super(message);
   }
+
+  /**
+   * Constructs a new processor exception with the specified detail message and
+   * cause.
+   */
+  public ProcessorException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  /**
+   * Constructs a new processor exception with the specified cause and a
+   * detail message of <tt>(cause==null ? null : cause.toString())</tt>
+   * (which typically contains the class and detail message of
+   * <tt>cause</tt>).
+   */
+  public ProcessorException(Throwable cause) {
+    super(cause);
+  }
+
 }
