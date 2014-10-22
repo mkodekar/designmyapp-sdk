@@ -16,7 +16,7 @@ import mobi.designmyapp.sdk.processor.PriceProcessor;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 import mobi.designmyapp.sdk.validator.ContentValidator;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,8 +28,6 @@ import java.util.List;
  */
 public abstract class Generator<T extends Generation> {
 
-  public static List<String> STATIC_RESOURCES = new ArrayList<>();
-
   private final Class<T> type;
 
   public Generator(Class<T> type) {
@@ -38,6 +36,10 @@ public abstract class Generator<T extends Generation> {
 
   public Class<T> getGenerationType() {
     return this.type;
+  }
+
+  public List<String> getStaticResources() {
+    return Collections.emptyList();
   }
 
   public abstract String getTemplateTag();
