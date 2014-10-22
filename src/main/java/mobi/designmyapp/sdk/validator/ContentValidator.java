@@ -21,6 +21,6 @@ package mobi.designmyapp.sdk.validator;
  * You should only validate elements which have an impact on the destination template (your business-logic).
  * You should not do any I/O operations here, as they should be handled in the processing part.
  */
-public interface ContentValidator<T extends Object> {
+public interface ContentValidator<T> {
   void validate(T obj);
 }
