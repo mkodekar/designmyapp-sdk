@@ -25,6 +25,17 @@
       <url>${snapshots.repository.url}</url>
     </snapshotRepository>
   </distributionManagement>
+  <developers>
+    <developer>
+      <id>loicortola</id>
+      <name>Loic Ortola</name>
+      <email>lortola@ebusinessinformation.fr</email>
+      <roles>
+        <role>Tech Lead</role>
+      </roles>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
