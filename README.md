@@ -1,6 +1,6 @@
 #DesignMyApp Software Development Kit
 
-`Version: 1.0.1`
+`Version: 1.0.3`
 
 Follow us on Twitter:
 @DesignMyApp  
@@ -14,6 +14,20 @@ Legal:
 
 Documentation and developer resources are available on
 http://developer.designmyapp.mobi
+
+# Maven
+```
+<dependency>
+	<groupId>mobi.designmyapp</groupId>
+	<artifactId>designmyapp-sdk</artifactId>
+	<version>${designmyapp-sdk.version}</version>
+</dependency>
+<dependency>
+	<groupId>mobi.designmyapp</groupId>
+	<artifactId>designmyapp-common-api</artifactId>
+	<version>${designmyapp-sdk.version}</version>
+</dependency>
+```
 
 # Learn
 
