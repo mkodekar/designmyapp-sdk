@@ -15,10 +15,10 @@
  */
 package mobi.designmyapp.sdk.processor;
 
-import mobi.designmyapp.common.model.Generation;
-import mobi.designmyapp.common.model.Pricing;
+import mobi.designmyapp.common.api.model.Generation;
+import mobi.designmyapp.common.api.model.Pricing;
 
-import mobi.designmyapp.common.model.Price;
+import mobi.designmyapp.common.api.model.Price;
 
 /**
  * Created by Loïc Ortola on 24/7/14.

@@ -7,7 +7,7 @@ without the express written permission of eBusiness Information.
 package mobi.designmyapp.sdk.model;
 
 
-import mobi.designmyapp.common.model.Generation;
+import mobi.designmyapp.common.api.model.Generation;
 import mobi.designmyapp.sdk.builder.AndroidBuilder;
 import mobi.designmyapp.sdk.builder.IosBuilder;
 import mobi.designmyapp.sdk.processor.ArchiveProcessor;

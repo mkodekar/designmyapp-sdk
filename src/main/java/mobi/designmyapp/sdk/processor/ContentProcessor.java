@@ -1,7 +1,7 @@
 package mobi.designmyapp.sdk.processor;
 
 
-import mobi.designmyapp.common.model.Generation;
+import mobi.designmyapp.common.api.model.Generation;
 
 /**
  * Created by Loïc Ortola on 7/7/14.

@@ -1,12 +1,11 @@
 package mobi.designmyapp.sdk.processor.impl;
 
 
-import mobi.designmyapp.common.model.UploadRequest;
-import mobi.designmyapp.common.utils.FileManagementUtils;
-import mobi.designmyapp.common.model.Image;
+import mobi.designmyapp.common.api.model.UploadRequest;
+import mobi.designmyapp.common.api.model.Image;
+import mobi.designmyapp.common.api.utils.UtilsFactory;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -42,13 +41,14 @@ public class ImageUploadProcessor extends UploadProcessor<Image> {
     File tmpFile = new File(destDir, request.getOriginalFilename()+".tmp");
 
     // Write the stream to a new file
-    FileUtils.copyInputStreamToFile(request.getObj(), tmpFile);
-
-    String destFileName = DigestUtils.shaHex(new FileInputStream(tmpFile))+FileManagementUtils.getExtension(request.getOriginalFilename());
+    UtilsFactory.getFileManagementUtils().copyInputStreamToFile(request.getObj(), tmpFile);
+//TODO
+    String destFileName = DigestUtils.shaHex(String.valueOf(new FileInputStream(tmpFile)))+
+        UtilsFactory.getFileManagementUtils().getExtension(request.getOriginalFilename());
 
     File destFile = new File(destDir,destFileName);
     if(!destFile.exists())
-      FileUtils.moveFile(tmpFile, destFile);
+      UtilsFactory.getFileManagementUtils().moveFile(tmpFile, destFile);
 
     return Image.builder()
         .fileName(destFileName)

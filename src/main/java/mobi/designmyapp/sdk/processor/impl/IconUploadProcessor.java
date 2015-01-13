@@ -1,9 +1,8 @@
 package mobi.designmyapp.sdk.processor.impl;
 
-import mobi.designmyapp.common.model.UploadRequest;
-import mobi.designmyapp.common.utils.ImageUtils;
-import mobi.designmyapp.common.utils.ResourceUtils;
-import mobi.designmyapp.common.model.Image;
+import mobi.designmyapp.common.api.model.UploadRequest;
+import mobi.designmyapp.common.api.utils.UtilsFactory;
+import mobi.designmyapp.common.api.model.Image;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 
 import java.io.File;
@@ -32,9 +31,9 @@ public class IconUploadProcessor extends UploadProcessor {
   @Override
   public Object process(UploadRequest request, File destDir) throws IOException {
 
-    String url = ResourceUtils.createUrl(request.getAppId(), NAMESPACE, "icon.png", request.getPortalName());
+    String url = UtilsFactory.getResourceUtils().createUrl(request.getAppId(), NAMESPACE, "icon.png", request.getPortalName());
 
-    ImageUtils.resizeImageToIcon(request.getObj(), new File(destDir, "icon.png"));
+    UtilsFactory.getImageUtils().resizeImageToIcon(request.getObj(), new File(destDir, "icon.png"));
 
     return new Image("icon.png",request.getOriginalFilename(),url);
   }
