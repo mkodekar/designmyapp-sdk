@@ -14,16 +14,20 @@ import java.util.List;
  * Created by Loïc Ortola on 7/30/14
  * ZipUploadProcessor implementation
  */
-public class ZipUploadProcessor extends UploadProcessor {
+public class ZipUploadProcessor implements UploadProcessor {
 
   public static final String NAMESPACE = "zip";
 
   private List<String> validExtensions;
 
   public ZipUploadProcessor() {
-    super(NAMESPACE);
     validExtensions = new ArrayList<>();
     validExtensions.add("zip");
+  }
+
+  @Override
+  public String getNamespace() {
+    return null;
   }
 
   @Override
@@ -32,13 +36,13 @@ public class ZipUploadProcessor extends UploadProcessor {
     File tmpZipFile = new File(destDir, "tmp.zip");
 
     // Write the stream to a new file
-    UtilsFactory.getFileManagementUtils().copyInputStreamToFile(request.getObj(), tmpZipFile);
+    UtilsFactory.getIOUtils().copyInputStreamToFile(request.getObj(), tmpZipFile);
 
-    String zipHash = UtilsFactory.getFileManagementUtils().createHash(tmpZipFile);
+    String zipHash = UtilsFactory.getDigestUtils().createHash(tmpZipFile);
     File zipFile = new File(destDir,zipHash+".zip");
 
     if (!zipFile.exists()) {
-      UtilsFactory.getFileManagementUtils().moveFile(tmpZipFile, zipFile);
+      UtilsFactory.getIOUtils().moveFile(tmpZipFile, zipFile);
     } else {
       tmpZipFile.delete();
     }

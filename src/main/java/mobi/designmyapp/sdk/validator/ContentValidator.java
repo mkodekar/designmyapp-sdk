@@ -15,12 +15,22 @@
  */
 package mobi.designmyapp.sdk.validator;
 
+import mobi.designmyapp.common.api.model.Template;
+
 /**
- * Created by loic on 7/7/14.
- * The validator checks that the Generation object sent is semantically valid.
- * You should only validate elements which have an impact on the destination template (your business-logic).
- * You should not do any I/O operations here, as they should be handled in the processing part.
+ * Created by Loïc Ortola on 07/07/14.
+ * ContentValidator checks that the Template object sent is semantically valid.
+ * Although the implementation is not mandatory, it is highly recommended to do so when submitting a template.
+ * It will prevent illegal use of the template.
  */
-public interface ContentValidator<T> {
+public interface ContentValidator<T extends Template> {
+
+  /**
+   * The method will be called automatically by the engine at generation time.
+   * Only elements which have an impact on the destination template (your business-logic) should be semantically validated here.
+   * No CPU-Bound operations should be done here, as those will be handled during the processing step.
+   *
+   * @param obj the template object to validate
+   */
   void validate(T obj);
 }

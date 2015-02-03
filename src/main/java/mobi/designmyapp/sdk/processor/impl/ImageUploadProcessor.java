@@ -17,22 +17,22 @@ import java.util.List;
  * Created by Loïc Ortola on 7/30/14
  * ImageUploadProcessor implementation
  */
-public class ImageUploadProcessor extends UploadProcessor<Image> {
+public class ImageUploadProcessor implements UploadProcessor<Image> {
 
   public static final String NAMESPACE = "image";
 
   private List<String> validExtensions;
 
-  public ImageUploadProcessor(String namespace) {
-    super(namespace);
+  public ImageUploadProcessor() {
     validExtensions = new ArrayList<>();
     validExtensions.add("png");
     validExtensions.add("jpg");
     validExtensions.add("jpeg");
   }
 
-  public ImageUploadProcessor() {
-    this(NAMESPACE);
+  @Override
+  public String getNamespace() {
+    return null;
   }
 
   @Override
@@ -41,14 +41,14 @@ public class ImageUploadProcessor extends UploadProcessor<Image> {
     File tmpFile = new File(destDir, request.getOriginalFilename()+".tmp");
 
     // Write the stream to a new file
-    UtilsFactory.getFileManagementUtils().copyInputStreamToFile(request.getObj(), tmpFile);
-//TODO
+    UtilsFactory.getIOUtils().copyInputStreamToFile(request.getObj(), tmpFile);
+    //TODO
     String destFileName = DigestUtils.shaHex(String.valueOf(new FileInputStream(tmpFile)))+
-        UtilsFactory.getFileManagementUtils().getExtension(request.getOriginalFilename());
+        UtilsFactory.getIOUtils().getExtension(request.getOriginalFilename());
 
     File destFile = new File(destDir,destFileName);
     if(!destFile.exists())
-      UtilsFactory.getFileManagementUtils().moveFile(tmpFile, destFile);
+      UtilsFactory.getIOUtils().moveFile(tmpFile, destFile);
 
     return Image.builder()
         .fileName(destFileName)

@@ -7,9 +7,10 @@ without the express written permission of eBusiness Information.
 package mobi.designmyapp.sdk.model;
 
 
-import mobi.designmyapp.common.api.model.Generation;
+import mobi.designmyapp.common.api.model.Template;
 import mobi.designmyapp.sdk.builder.AndroidBuilder;
 import mobi.designmyapp.sdk.builder.IosBuilder;
+import mobi.designmyapp.sdk.builder.WebappBuilder;
 import mobi.designmyapp.sdk.processor.ArchiveProcessor;
 import mobi.designmyapp.sdk.processor.ContentProcessor;
 import mobi.designmyapp.sdk.processor.PriceProcessor;
@@ -26,7 +27,7 @@ import java.util.List;
  * Every Generator is associated with your template tag (unique identifier of your template).
  * Warning: Your generator class MUST be in the mobi.designmyapp.template.generator package!
  */
-public abstract class Generator<T extends Generation> {
+public abstract class Generator<T extends Template> {
 
   private final Class<T> type;
 
@@ -44,17 +45,34 @@ public abstract class Generator<T extends Generation> {
 
   public abstract String getTemplateTag();
 
-  public abstract ContentValidator getValidator();
+  public ContentValidator getValidator() {
+    return null;
+  }
 
   public abstract ContentProcessor getProcessor();
 
-  public abstract PriceProcessor getPriceProcessor();
+  public PriceProcessor getPriceProcessor() {
+    return null;
+  }
 
-  public abstract List<UploadProcessor> getUploadProcessors();
+  public List<UploadProcessor> getUploadProcessors() {
+    return null;
+  }
 
-  public abstract List<ArchiveProcessor> getArchiveProcessors();
+  public List<ArchiveProcessor> getArchiveProcessors() {
+    return null;
+  }
 
-  public abstract AndroidBuilder<T> getAndroidBuilder();
+  public AndroidBuilder<T> getAndroidBuilder() {
+    return null;
+  }
 
-  public abstract IosBuilder<T> getIosBuilder();
+  public IosBuilder<T> getIosBuilder() {
+    return null;
+  }
+
+  public WebappBuilder<T> getWebappBuilder() {
+    return null;
+  }
+
 }

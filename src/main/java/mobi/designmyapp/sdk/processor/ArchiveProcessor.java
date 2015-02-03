@@ -23,23 +23,29 @@ import java.util.List;
 
 /**
  * Created by Christophe Deverre on 28/07/14.
- * The ArchiveProcessor enables to create custom processing when uploading a zip file.
- * The generic ZipUploadProcessor will extract the resource, and give you the outputDirectory in the upload request object.
+ * ArchiveProcessor is a descriptor class which enables the creation of custom CPU-bound processing after uploading a zip file.
+ * Is tightly coupled to @see mobi.designmyapp.sdk.processor.impl.ZipUploadProcessor .
+ * The ArchiveProcessor can be Typed with a POJO used as payload in the Http Response.
  */
-public abstract  class ArchiveProcessor {
+public interface ArchiveProcessor<T> {
 
-    private final String nameSpace;
+  String getNamespace();
 
-    public ArchiveProcessor(String nameSpace) {
-      this.nameSpace = nameSpace;
-    }
+  /**
+   * When uploading a file, the engine uses a @see mobi.designmyapp.sdk.processor.impl.ZipUploadProcessor to self-extract the resource,
+   * then calls this method automatically.
+   *
+   * @param request        the @see mobi.designmyapp.common.model.UploadRequest object.
+   * @param destDir        the directory where processed resources are to be stored.
+   * @param unhandledFiles the list of files that were ignored (not matching the @see mobi.designmyapp.sdk.processor.ArchiveProcessor#getValidExtensions()
+   * @return any POJO to be serialized and returned as a payload in the Http response.
+   * @throws IOException
+   */
+  T process(UploadRequest request, File destDir, List<String> unhandledFiles) throws IOException;
 
-    public final String getNameSpace() {
-      return nameSpace;
-    }
-
-    public abstract Object process(UploadRequest request,File destDir, List<String> unhandledFiles) throws IOException;
-
-    public abstract List<String> getValidExtensions();
+  /**
+   * @return a List of valid extensions accepted by the UploadProcessor (i.e. "png", "jpg", "csv", ...)
+   */
+  List<String> getValidExtensions();
 
 }

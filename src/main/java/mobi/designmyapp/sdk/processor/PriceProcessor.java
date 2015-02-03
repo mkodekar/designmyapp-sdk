@@ -15,43 +15,48 @@
  */
 package mobi.designmyapp.sdk.processor;
 
-import mobi.designmyapp.common.api.model.Generation;
-import mobi.designmyapp.common.api.model.Pricing;
-
+import mobi.designmyapp.common.api.model.Portal;
 import mobi.designmyapp.common.api.model.Price;
+import mobi.designmyapp.common.api.model.Pricing;
+import mobi.designmyapp.common.api.model.Template;
 
 /**
- * Created by Loïc Ortola on 24/7/14.
- * A price processor is a descriptor used to declare your pricing computation logic
+ * Created by Loïc Ortola on 24/07/14.
+ * PriceProcessor is a descriptor class used to declare the pricing computation logic of a template.
+ * Generics Types should be:
+ * - your Template custom implementation class
+ * - your Pricing custom implementation class
  */
-public abstract class PriceProcessor<T extends Generation> {
+public abstract class PriceProcessor<T extends Template, P extends Pricing> {
 
   /**
-   * Your Pricing class descriptor (used for reflection)
+   * Pricing class descriptor (used for reflection)
    */
   private final Class<? extends Pricing> type;
 
   /**
-   * Sole constructor
-   * @param type your Pricing class descriptor. Should extend Pricing.class, but rather your own implementation
+   * @param type the Custom Pricing class. Should extend Pricing.class.
    */
-  public PriceProcessor(Class<? extends Pricing> type) {
+  public PriceProcessor(Class<P> type) {
+    if (Pricing.class.equals(type)) {
+      throw new IllegalArgumentException("Cannot provide default Pricing class to the PriceProcessor constructor. Only custom implementations are allowed.");
+    }
     this.type = type;
   }
 
   /**
-   * Get the Pricing class descriptor (used for reflection)
-   * @return
+   * @return the Pricing class descriptor (used for reflection)
    */
   public Class<? extends Pricing> getPricingType() {
     return this.type;
   }
 
   /**
-   * Compute the price of your template
-   * @param generation your generation object, which will be used to determine your pricing
-   * @return
+   * Called by the engine to compute the price of a template.
+   *
+   * @param template the requested template object, used to determine the price depending on the options chosen.
+   * @return the computed Price.
    */
-  public abstract Price computePrice(T generation);
+  public abstract Price computePrice(Portal portal, T template);
 
 }
