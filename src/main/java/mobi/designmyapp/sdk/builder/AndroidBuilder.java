@@ -6,8 +6,8 @@ without the express written permission of eBusiness Information.
 */
 package mobi.designmyapp.sdk.builder;
 
-import mobi.designmyapp.common.builder.Builder;
-import mobi.designmyapp.common.api.model.Template;
+import mobi.designmyapp.common.engine.builder.Builder;
+import mobi.designmyapp.common.engine.model.Template;
 
 /**
  * Created by Alexandre Nunesse on 7/16/14.

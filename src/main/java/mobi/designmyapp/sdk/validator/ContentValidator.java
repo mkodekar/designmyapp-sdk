@@ -15,7 +15,7 @@
  */
 package mobi.designmyapp.sdk.validator;
 
-import mobi.designmyapp.common.api.model.Template;
+import mobi.designmyapp.common.engine.model.Template;
 
 /**
  * Created by Loïc Ortola on 07/07/14.

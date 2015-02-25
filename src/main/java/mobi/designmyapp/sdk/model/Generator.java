@@ -7,7 +7,7 @@ without the express written permission of eBusiness Information.
 package mobi.designmyapp.sdk.model;
 
 
-import mobi.designmyapp.common.api.model.Template;
+import mobi.designmyapp.common.engine.model.Template;
 import mobi.designmyapp.sdk.builder.AndroidBuilder;
 import mobi.designmyapp.sdk.builder.IosBuilder;
 import mobi.designmyapp.sdk.builder.WebappBuilder;
@@ -35,7 +35,7 @@ public abstract class Generator<T extends Template> {
     this.type = type;
   }
 
-  public Class<T> getGenerationType() {
+  public Class<T> getTemplateClass() {
     return this.type;
   }
 
@@ -49,7 +49,9 @@ public abstract class Generator<T extends Template> {
     return null;
   }
 
-  public abstract ContentProcessor getProcessor();
+  public ContentProcessor getProcessor() {
+    return null;
+  }
 
   public PriceProcessor getPriceProcessor() {
     return null;

@@ -1,8 +1,8 @@
 package mobi.designmyapp.sdk.processor.impl;
 
-import mobi.designmyapp.common.api.model.Image;
-import mobi.designmyapp.common.api.model.UploadRequest;
-import mobi.designmyapp.common.api.utils.UtilsFactory;
+import mobi.designmyapp.common.engine.model.Image;
+import mobi.designmyapp.common.engine.model.UploadRequest;
+import mobi.designmyapp.common.util.UtilsFactory;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 
 import java.io.File;

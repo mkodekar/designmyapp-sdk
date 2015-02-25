@@ -16,7 +16,7 @@
 package mobi.designmyapp.sdk.processor;
 
 
-import mobi.designmyapp.common.api.model.UploadRequest;
+import mobi.designmyapp.common.engine.model.UploadRequest;
 
 import java.io.File;
 import java.io.IOException;

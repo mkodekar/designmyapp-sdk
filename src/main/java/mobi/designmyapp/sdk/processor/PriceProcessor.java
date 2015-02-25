@@ -15,10 +15,10 @@
  */
 package mobi.designmyapp.sdk.processor;
 
-import mobi.designmyapp.common.api.model.Portal;
-import mobi.designmyapp.common.api.model.Price;
-import mobi.designmyapp.common.api.model.Pricing;
-import mobi.designmyapp.common.api.model.Template;
+import mobi.designmyapp.common.engine.model.Pricing;
+import mobi.designmyapp.common.engine.model.Template;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Loïc Ortola on 24/07/14.
@@ -57,6 +57,6 @@ public abstract class PriceProcessor<T extends Template, P extends Pricing> {
    * @param template the requested template object, used to determine the price depending on the options chosen.
    * @return the computed Price.
    */
-  public abstract Price computePrice(Portal portal, T template);
+  public abstract BigDecimal computePrice(T template);
 
 }

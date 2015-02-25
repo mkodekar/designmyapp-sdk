@@ -1,7 +1,7 @@
 package mobi.designmyapp.sdk.processor.impl;
 
-import mobi.designmyapp.common.api.model.UploadRequest;
-import mobi.designmyapp.common.api.utils.UtilsFactory;
+import mobi.designmyapp.common.engine.model.UploadRequest;
+import mobi.designmyapp.common.util.UtilsFactory;
 import mobi.designmyapp.sdk.processor.ArchiveProcessor;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 
@@ -27,7 +27,7 @@ public class ZipUploadProcessor implements UploadProcessor {
 
   @Override
   public String getNamespace() {
-    return null;
+    return NAMESPACE;
   }
 
   @Override
