@@ -1,5 +1,5 @@
 /*
- Copyright 2014 eBusiness Information
+ Copyright 2015 eBusiness Information
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  limitations under the License.
  */
 package mobi.designmyapp.sdk.processor;
-
 
 import mobi.designmyapp.common.engine.model.UploadRequest;
 
@@ -45,7 +44,7 @@ public interface UploadProcessor<T> {
   /**
    * Called by the engine when a file has been successfully uploaded for the current matching namespace.
    *
-   * @param request the UploadRequest. @see mobi.designmyapp.common.model.UploadRequest.
+   * @param request the UploadRequest. @see mobi.designmyapp.common.engine.model.UploadRequest.
    * @param destDir the destination directory. Contains all resources already uploaded through this implementation.
    * @return any POJO to be serialized and returned as a payload in the Http response.
    * @throws IOException

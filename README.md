@@ -1,6 +1,6 @@
 #DesignMyApp Software Development Kit
 
-`Version: 1.0.4-SNAPSHOT`
+`Version: 2.0.0`
 
 Follow us on Twitter:
 @DesignMyApp  
@@ -42,7 +42,7 @@ Track issues on https://github.com/e-biz/designmyapp
 
 # License
 
-Copyright 2014 eBusiness Information
+Copyright 2015 eBusiness Information
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
