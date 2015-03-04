@@ -22,11 +22,11 @@ import mobi.designmyapp.common.instance.manager.InstanceManager;
  * The WebAppBuilder will allow you to do the final steps before your webapp is built:
  * Copy static resources to the right folder, replace template tokens, parse resource files.
  */
-public abstract class WebappBuilder<T extends Template, U extends InstanceManager> implements Builder<T> {
+public abstract class WebappBuilder<T extends Template> implements Builder<T> {
 
-  private Class<U> instanceManagerClass;
+  private Class<? extends InstanceManager> instanceManagerClass;
 
-  public WebappBuilder(Class<U> instanceManagerClass) {
+  public WebappBuilder(Class<? extends InstanceManager> instanceManagerClass) {
     this.instanceManagerClass = instanceManagerClass;
   }
 
@@ -39,7 +39,7 @@ public abstract class WebappBuilder<T extends Template, U extends InstanceManage
    * Retrieve the InstanceManager class
    * @see mobi.designmyapp.common.instance.manager.InstanceManager
    */
-  public final Class<U> getInstanceManagerType() {
+  public final Class<? extends InstanceManager> getInstanceManagerType() {
     return instanceManagerClass;
   }
 }
