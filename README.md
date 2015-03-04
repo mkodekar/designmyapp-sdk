@@ -1,6 +1,6 @@
 #DesignMyApp Software Development Kit
 
-`Version: 2.0.0`
+`Version: 2.0.0-SNAPSHOT`
 
 Follow us on Twitter:
 @DesignMyApp  
