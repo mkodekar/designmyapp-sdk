@@ -24,22 +24,9 @@ import mobi.designmyapp.common.instance.manager.InstanceManager;
  */
 public abstract class WebappBuilder<T extends Template> implements Builder<T> {
 
-  private Class<? extends InstanceManager> instanceManagerClass;
-
-  public WebappBuilder(Class<? extends InstanceManager> instanceManagerClass) {
-    this.instanceManagerClass = instanceManagerClass;
-  }
-
   @Override
   public final Type getType() {
     return Type.WEBAPP;
   }
 
-  /**
-   * Retrieve the InstanceManager class
-   * @see mobi.designmyapp.common.instance.manager.InstanceManager
-   */
-  public final Class<? extends InstanceManager> getInstanceManagerType() {
-    return instanceManagerClass;
-  }
 }
