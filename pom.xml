@@ -50,7 +50,7 @@
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-release-plugin.version>2.5</maven-release-plugin.version>
     <apache-commons-io.version>1.2</apache-commons-io.version>
-    <designmyapp-common-api.version>2.0.0-SNAPSHOT</designmyapp-common-api.version>
+    <designmyapp-common-api.version>${project.version}</designmyapp-common-api.version>
   </properties>
 
   <!-- Profiles -->
