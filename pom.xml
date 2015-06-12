@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>mobi.designmyapp</groupId>
   <artifactId>designmyapp-sdk</artifactId>
-  <version>2.4.0-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <name>DesignMyApp SDK</name>
   <description>This maven artifact contains all classes needed to develop DesignMyApp Templates.</description>
   <url>http://developer.designmyapp.mobi</url>
@@ -50,7 +50,6 @@
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-release-plugin.version>2.5</maven-release-plugin.version>
     <apache-commons-io.version>1.2</apache-commons-io.version>
-    <designmyapp-common-api.version>2.3.0</designmyapp-common-api.version>
   </properties>
 
   <!-- Profiles -->
@@ -152,14 +151,9 @@
   <!-- Project dependencies -->
   <dependencies>
     <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>${apache-commons-io.version}</version>
-    </dependency>
-    <dependency>
       <groupId>mobi.designmyapp</groupId>
       <artifactId>designmyapp-common-api</artifactId>
-      <version>${designmyapp-common-api.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
