@@ -88,9 +88,8 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
         .fileName(destFileName)
         .originalName(request.getOriginalFilename())
         .prepareUrl()
-        .appId(request.getAppId())
         .namespace(namespace)
-        .portal(request.getPortalName())
+        .apiKey(request.getPortalName())
         .build();
 
   }
