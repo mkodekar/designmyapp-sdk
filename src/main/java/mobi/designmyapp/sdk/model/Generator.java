@@ -23,6 +23,7 @@ import mobi.designmyapp.sdk.processor.PriceProcessor;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 import mobi.designmyapp.sdk.validator.ContentValidator;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,6 +37,7 @@ import java.util.List;
 public abstract class Generator<T extends Template> {
 
   private final Class<T> type;
+  private static final List<String> DEFAULT_VERSIONS = Arrays.asList(new String[]{"1.0.0"});
 
   public Generator(Class<T> type) {
     this.type = type;
@@ -125,6 +127,17 @@ public abstract class Generator<T extends Template> {
    */
   public WebappBuilder<T> getWebappBuilder() {
     return null;
+  }
+
+  /**
+   * Retrieve template available versions.
+   * Default value is 1.0.0 and should be overridden as soon as there is a new one.
+   * Warning: Versions should always be declared in chronogical order: oldest first.
+   * example: {"1.0.0", "1.1.0", "1.2.0", "2.0.0"} 
+   * @return the list of available versions
+   */
+  public List<String> getVersions() {
+    return DEFAULT_VERSIONS;
   }
 
 }

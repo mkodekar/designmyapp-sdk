@@ -61,7 +61,7 @@ public class IconUploadProcessor implements UploadProcessor<Image> {
   @Override
   public Image process(UploadRequest request, File destDir) throws IOException {
 
-    String url = UtilsFactory.getContextService().createUrl(NAMESPACE, iconFileName, request.getPortalName());
+    String url = UtilsFactory.getContextService().createUrl(NAMESPACE, iconFileName, request.getApiKey());
 
     UtilsFactory.getImageUtils().resizeImageToIcon(request.getObj(), new File(destDir, iconFileName));
 

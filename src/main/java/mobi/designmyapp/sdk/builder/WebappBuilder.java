@@ -15,7 +15,6 @@ package mobi.designmyapp.sdk.builder;
 
 import mobi.designmyapp.common.engine.builder.Builder;
 import mobi.designmyapp.common.engine.model.Template;
-import mobi.designmyapp.common.instance.manager.InstanceManager;
 
 /**
  * Created by Christophe Deverre on 30/01/15.
