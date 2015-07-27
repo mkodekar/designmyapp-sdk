@@ -27,6 +27,6 @@ public interface ContentProcessor<T extends Template> {
    *
    * @param template the requested template object.
    */
-  public abstract void process(T template);
+  void process(T template);
 
 }

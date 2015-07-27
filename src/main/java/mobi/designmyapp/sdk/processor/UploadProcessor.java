@@ -47,7 +47,7 @@ public interface UploadProcessor<T> {
    * @param request the UploadRequest. @see mobi.designmyapp.common.engine.model.UploadRequest.
    * @param destDir the destination directory. Contains all resources already uploaded through this implementation.
    * @return any POJO to be serialized and returned as a payload in the Http response.
-   * @throws IOException
+   * @throws IOException {@link IOException}
    */
   T process(UploadRequest request, File destDir) throws IOException;
 

@@ -35,16 +35,23 @@ public class IconUploadProcessor implements UploadProcessor<Image> {
 
   private final List<String> validExtensions = Arrays.asList("png", "jpg", "jpeg", "gif");
 
+  /**
+   * Constructor.
+   */
   public IconUploadProcessor() {
     this.iconFileName = "icon.png";
   }
 
+  /**
+   * Constructor.
+   * @param iconFileName the icon file name
+   */
   public IconUploadProcessor(String iconFileName) {
     this.iconFileName = iconFileName;
   }
 
   /**
-   * Retrieve namespace : representing where the uploaded file will be stored
+   * Retrieve namespace : representing where the uploaded file will be stored.
    */
   @Override
   public String getNamespace() {
@@ -52,7 +59,8 @@ public class IconUploadProcessor implements UploadProcessor<Image> {
   }
 
   /**
-   * Process the upload request
+   * Process the upload request.
+   *
    * @param request the UploadRequest. @see mobi.designmyapp.common.engine.model.UploadRequest.
    * @param destDir the destination directory. Contains all resources already uploaded through this implementation.
    * @return the uploaded image
@@ -69,7 +77,7 @@ public class IconUploadProcessor implements UploadProcessor<Image> {
   }
 
   /**
-   * Retrieve valid extensions for this processor
+   * Retrieve valid extensions for this processor.
    */
   @Override
   public List<String> getValidExtensions() {

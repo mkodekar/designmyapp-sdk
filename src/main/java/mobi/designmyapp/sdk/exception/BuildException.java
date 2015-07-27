@@ -29,6 +29,7 @@ public class BuildException extends RuntimeException {
 
   /**
    * Constructs a new build exception with the specified detail message and no cause.
+   * @param message the message
    */
   public BuildException(String message) {
     super(message);
@@ -37,6 +38,8 @@ public class BuildException extends RuntimeException {
   /**
    * Constructs a new build exception with the specified detail message and
    * cause.
+   * @param message the message
+   * @param cause   the cause
    */
   public BuildException(String message, Throwable cause) {
     super(message, cause);
@@ -47,6 +50,7 @@ public class BuildException extends RuntimeException {
    * detail message of <tt>(cause==null ? null : cause.toString())</tt>
    * (which typically contains the class and detail message of
    * <tt>cause</tt>).
+   * @param cause   the cause
    */
   public BuildException(Throwable cause) {
     super(cause);

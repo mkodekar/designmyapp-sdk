@@ -41,6 +41,10 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
   private final DigestUtils digestUtils;
   private final String namespace;
 
+  /**
+   * Constructor.
+   * @param namespace the namespace
+   */
   public ImageUploadProcessor(String namespace) {
     validExtensions = new ArrayList<>();
     validExtensions.add("png");
@@ -51,12 +55,15 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
     this.namespace = namespace;
   }
 
+  /**
+   * Default constructor.
+   */
   public ImageUploadProcessor() {
     this(DEFAULT_NAMESPACE);
   }
 
   /**
-   * Retrieve namespace : representing where the uploaded file will be stored
+   * Retrieve namespace : representing where the uploaded file will be stored.
    */
   @Override
   public String getNamespace() {
@@ -64,11 +71,12 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
   }
 
   /**
-   * Process the upload request
+   * Process the upload request.
+   *
    * @param request the UploadRequest. @see mobi.designmyapp.common.engine.model.UploadRequest.
    * @param destDir the destination directory. Contains all resources already uploaded through this implementation.
    * @return the uploaded image
-   * @throws IOException
+   * @throws IOException {@link IOException}
    */
   @Override
   public Image process(UploadRequest request, File destDir) throws IOException {
@@ -81,8 +89,9 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
         ioUtils.getExtension(request.getOriginalFilename());
 
     File destFile = new File(destDir, destFileName);
-    if (!destFile.exists())
+    if (!destFile.exists()) {
       ioUtils.moveFile(tmpFile, destFile);
+    }
 
     return Image.builder()
         .fileName(destFileName)
@@ -95,7 +104,7 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
   }
 
   /**
-   * Retrieve valid extensions for this processor
+   * Retrieve valid extensions for this processor.
    */
   @Override
   public List<String> getValidExtensions() {

@@ -15,8 +15,8 @@ package mobi.designmyapp.sdk.model;
 
 import mobi.designmyapp.common.engine.model.Template;
 import mobi.designmyapp.sdk.builder.AndroidBuilder;
-import mobi.designmyapp.sdk.builder.IosBuilder;
 import mobi.designmyapp.sdk.builder.ContainerBuilder;
+import mobi.designmyapp.sdk.builder.IosBuilder;
 import mobi.designmyapp.sdk.processor.ArchiveProcessor;
 import mobi.designmyapp.sdk.processor.ContentProcessor;
 import mobi.designmyapp.sdk.processor.PriceProcessor;
@@ -39,12 +39,17 @@ public abstract class Generator<T extends Template> {
   private final Class<T> type;
   private static final List<String> DEFAULT_VERSIONS = Arrays.asList(new String[]{"1.0.0"});
 
+  /**
+   * Constructor.
+   * @param type the type
+   */
   public Generator(Class<T> type) {
     this.type = type;
   }
 
   /**
-   * Retrieve this generator template class
+   * Retrieve this generator template class.
+   *
    * @return template class
    */
   public Class<T> getTemplateClass() {
@@ -53,7 +58,8 @@ public abstract class Generator<T extends Template> {
 
   /**
    * Retrieve the template static resources files
-   * such as data or image files
+   * such as data or image files.
+   *
    * @return filename string list
    */
   public List<String> getStaticResources() {
@@ -61,69 +67,78 @@ public abstract class Generator<T extends Template> {
   }
 
   /**
-   * Retrieve the template unique tag
+   * Retrieve the template unique tag.
+   * @return the template tag
    */
   public abstract String getTemplateTag();
 
   /**
-   * Retrieve template specific content validator instance:
-   * @see mobi.designmyapp.sdk.validator.ContentValidator
+   * Retrieve template specific content validator container.
+   *
+   * @return @see mobi.designmyapp.sdk.validator.ContentValidator
    */
   public ContentValidator getValidator() {
     return null;
   }
 
   /**
-   * Retrieve template specific content processor instance:
-   * @see mobi.designmyapp.sdk.processor.ContentProcessor
+   * Retrieve template specific content processor container.
+   *
+   * @return @see mobi.designmyapp.sdk.processor.ContentProcessor
    */
   public ContentProcessor getProcessor() {
     return null;
   }
 
   /**
-   * Retrieve template specific content price instance:
-   * @see mobi.designmyapp.sdk.processor.PriceProcessor
+   * Retrieve template specific content price container.
+   *
+   * @return @see mobi.designmyapp.sdk.processor.PriceProcessor
    */
   public PriceProcessor getPriceProcessor() {
     return null;
   }
 
   /**
-   * Retrieve template specific upload processors instances as a list
-   * @see mobi.designmyapp.sdk.processor.UploadProcessor
+   * Retrieve template specific upload processors containers as a list.
+   *
+   * @return @see mobi.designmyapp.sdk.processor.UploadProcessor
    */
   public List<UploadProcessor> getUploadProcessors() {
     return null;
   }
 
   /**
-   * Retrieve template specific archive processor instances as a list:
-   * @see mobi.designmyapp.sdk.processor.ArchiveProcessor
+   * Retrieve template specific archive processor containers as a list.
+   *
+   * @return @see mobi.designmyapp.sdk.processor.ArchiveProcessor
    */
   public List<ArchiveProcessor> getArchiveProcessors() {
     return null;
   }
 
   /**
-   * Retrieve template specific AndroidBuilder instance:
-   * @see mobi.designmyapp.sdk.builder.AndroidBuilder
+   * Retrieve template specific AndroidBuilder container.
+   *
+   * @return @see mobi.designmyapp.sdk.builder.AndroidBuilder
    */
   public AndroidBuilder<T> getAndroidBuilder() {
     return null;
   }
 
   /**
-   * Retrieve template specific IosBuilder instance:
-   * @see mobi.designmyapp.sdk.builder.IosBuilder
+   * Retrieve template specific IosBuilder container.
+   *
+   * @return @see mobi.designmyapp.sdk.builder.IosBuilder
    */
   public IosBuilder<T> getIosBuilder() {
     return null;
   }
 
   /**
-   * Retrieve template specific WebappBuilder instance:
-   * @see mobi.designmyapp.sdk.builder.ContainerBuilder
+   * Retrieve template specific WebappBuilder container.
+   *
+   * @return @see mobi.designmyapp.sdk.builder.ContainerBuilder
    */
   public ContainerBuilder<T> getContainerBuilder() {
     return null;
@@ -133,7 +148,8 @@ public abstract class Generator<T extends Template> {
    * Retrieve template available versions.
    * Default value is 1.0.0 and should be overridden as soon as there is a new one.
    * Warning: Versions should always be declared in chronogical order: oldest first.
-   * example: {"1.0.0", "1.1.0", "1.2.0", "2.0.0"} 
+   * example: {"1.0.0", "1.1.0", "1.2.0", "2.0.0"}
+   *
    * @return the list of available versions
    */
   public List<String> getVersions() {

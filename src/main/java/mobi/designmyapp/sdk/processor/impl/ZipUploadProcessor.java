@@ -32,14 +32,16 @@ public class ZipUploadProcessor implements UploadProcessor {
   public static final String NAMESPACE = "zip";
 
   private List<String> validExtensions;
-
+  /**
+   * Default constructor.
+   */
   public ZipUploadProcessor() {
     validExtensions = new ArrayList<>();
     validExtensions.add("zip");
   }
 
   /**
-   * Retrieve namespace : representing where the uploaded file will be stored
+   * Retrieve namespace : representing where the uploaded file will be stored.
    */
   @Override
   public String getNamespace() {
@@ -47,7 +49,8 @@ public class ZipUploadProcessor implements UploadProcessor {
   }
 
   /**
-   * Process the upload request
+   * Process the upload request.
+   *
    * @param request the UploadRequest. @see mobi.designmyapp.common.engine.model.UploadRequest.
    * @param destDir the destination directory. Contains all resources already uploaded through this implementation.
    * @return the uploaded resources
@@ -62,7 +65,7 @@ public class ZipUploadProcessor implements UploadProcessor {
     UtilsFactory.getIOUtils().copyInputStreamToFile(request.getObj(), tmpZipFile);
 
     String zipHash = UtilsFactory.getDigestUtils().createHash(tmpZipFile);
-    File zipFile = new File(destDir,zipHash+".zip");
+    File zipFile = new File(destDir, zipHash + ".zip");
 
     if (!zipFile.exists()) {
       UtilsFactory.getIOUtils().moveFile(tmpZipFile, zipFile);
@@ -82,7 +85,7 @@ public class ZipUploadProcessor implements UploadProcessor {
   }
 
   /**
-   * Retrieve valid extensions for this processor
+   * Retrieve valid extensions for this processor.
    */
   @Override
   public List<String> getValidExtensions() {

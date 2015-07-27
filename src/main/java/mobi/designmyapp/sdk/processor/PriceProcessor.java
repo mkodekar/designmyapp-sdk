@@ -30,11 +30,12 @@ import java.math.BigDecimal;
 public abstract class PriceProcessor<T extends Template, P extends Pricing> {
 
   /**
-   * Pricing class descriptor (used for reflection)
+   * Pricing class descriptor (used for reflection).
    */
   private final Class<? extends Pricing> type;
 
   /**
+   * Constructor.
    * @param type the Custom Pricing class. Should extend Pricing.class.
    */
   public PriceProcessor(Class<P> type) {
@@ -45,6 +46,7 @@ public abstract class PriceProcessor<T extends Template, P extends Pricing> {
   }
 
   /**
+   * Get pricing type.
    * @return the Pricing class descriptor (used for reflection)
    */
   public Class<? extends Pricing> getPricingType() {

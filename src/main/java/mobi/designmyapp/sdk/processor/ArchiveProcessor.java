@@ -25,7 +25,12 @@ import java.util.List;
  * The ArchiveProcessor can be Typed with a POJO used as payload in the Http Response.
  */
 public interface ArchiveProcessor<T> {
-
+  /**
+   * The namespace identifies the ArchiveProcessor.
+   * The namespace should represent the kind of entity which is bound to be archived.
+   *
+   * @return the current Archive  Processor Implementation namespace.
+   */
   String getNamespace();
 
   /**
@@ -36,7 +41,7 @@ public interface ArchiveProcessor<T> {
    * @param destDir        the directory where processed resources are to be stored.
    * @param unhandledFiles the list of files that were ignored (not matching the @see mobi.designmyapp.sdk.processor.ArchiveProcessor#getValidExtensions()
    * @return any POJO to be serialized and returned as a payload in the Http response.
-   * @throws IOException
+   * @throws IOException {@link IOException}
    */
   T process(UploadRequest request, File destDir, List<String> unhandledFiles) throws IOException;
 

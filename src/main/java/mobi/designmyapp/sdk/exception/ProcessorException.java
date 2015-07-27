@@ -29,6 +29,8 @@ public class ProcessorException extends RuntimeException {
 
   /**
    * Constructs a new processor exception with the specified detail message and no cause.
+   *
+   * @param message the message
    */
   public ProcessorException(String message) {
     super(message);
@@ -37,6 +39,9 @@ public class ProcessorException extends RuntimeException {
   /**
    * Constructs a new processor exception with the specified detail message and
    * cause.
+   *
+   * @param message the message
+   * @param cause   the cause
    */
   public ProcessorException(String message, Throwable cause) {
     super(message, cause);
@@ -47,6 +52,7 @@ public class ProcessorException extends RuntimeException {
    * detail message of <tt>(cause==null ? null : cause.toString())</tt>
    * (which typically contains the class and detail message of
    * <tt>cause</tt>).
+   * @param cause   the cause
    */
   public ProcessorException(Throwable cause) {
     super(cause);
