@@ -16,7 +16,7 @@ package mobi.designmyapp.sdk.model;
 import mobi.designmyapp.common.engine.model.Template;
 import mobi.designmyapp.sdk.builder.AndroidBuilder;
 import mobi.designmyapp.sdk.builder.IosBuilder;
-import mobi.designmyapp.sdk.builder.WebappBuilder;
+import mobi.designmyapp.sdk.builder.ContainerBuilder;
 import mobi.designmyapp.sdk.processor.ArchiveProcessor;
 import mobi.designmyapp.sdk.processor.ContentProcessor;
 import mobi.designmyapp.sdk.processor.PriceProcessor;
@@ -123,9 +123,9 @@ public abstract class Generator<T extends Template> {
 
   /**
    * Retrieve template specific WebappBuilder instance:
-   * @see mobi.designmyapp.sdk.builder.WebappBuilder
+   * @see mobi.designmyapp.sdk.builder.ContainerBuilder
    */
-  public WebappBuilder<T> getWebappBuilder() {
+  public ContainerBuilder<T> getContainerBuilder() {
     return null;
   }
 
