@@ -13,6 +13,7 @@
 package mobi.designmyapp.sdk.model;
 
 
+import mobi.designmyapp.common.container.model.MigrationDescriptor;
 import mobi.designmyapp.common.engine.model.Template;
 import mobi.designmyapp.sdk.builder.AndroidBuilder;
 import mobi.designmyapp.sdk.builder.ContainerBuilder;
@@ -23,9 +24,15 @@ import mobi.designmyapp.sdk.processor.PriceProcessor;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
 import mobi.designmyapp.sdk.validator.ContentValidator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by Loïc Ortola on 7/7/14.
@@ -37,10 +44,13 @@ import java.util.List;
 public abstract class Generator<T extends Template> {
 
   private final Class<T> type;
-  private static final List<String> DEFAULT_VERSIONS = Arrays.asList(new String[]{"1.0.0"});
+  private final Map<String, MigrationDescriptor> migrationDescriptorMap = new HashMap<>();
+  private final Set<String> versions = new TreeSet<>();
+  private final Set<String> staticResources = new HashSet<>();
 
   /**
    * Constructor.
+   *
    * @param type the type
    */
   public Generator(Class<T> type) {
@@ -57,17 +67,8 @@ public abstract class Generator<T extends Template> {
   }
 
   /**
-   * Retrieve the template static resources files
-   * such as data or image files.
-   *
-   * @return filename string list
-   */
-  public List<String> getStaticResources() {
-    return Collections.emptyList();
-  }
-
-  /**
    * Retrieve the template unique tag.
+   *
    * @return the template tag
    */
   public abstract String getTemplateTag();
@@ -144,16 +145,74 @@ public abstract class Generator<T extends Template> {
     return null;
   }
 
+
+  /**
+   * Retrieve the template static resources files
+   * such as data or image files.
+   *
+   * @return filename string list
+   */
+  public final List<String> getStaticResources() {
+    return Collections.unmodifiableList(new ArrayList<>(staticResources));
+  }
+
   /**
    * Retrieve template available versions.
-   * Default value is 1.0.0 and should be overridden as soon as there is a new one.
-   * Warning: Versions should always be declared in chronogical order: oldest first.
+   * Default value is 1.0.0 and will be overridden as soon as one is provided.
+   * Warning: Versions will always be sorted with their natural ordering.
    * example: {"1.0.0", "1.1.0", "1.2.0", "2.0.0"}
    *
    * @return the list of available versions
    */
-  public List<String> getVersions() {
-    return DEFAULT_VERSIONS;
+  public final List<String> getVersions() {
+    return Collections.unmodifiableList(versions.isEmpty() ? Arrays.asList("1.0.0") : new ArrayList<>(versions));
+  }
+
+  /**
+   * Retrieve the migration descriptor for the desired migration.
+   *
+   * @param from the old version
+   * @param to   the new version
+   * @return the migration descriptor
+   */
+  public final MigrationDescriptor getMigrationDescriptor(String from, String to) {
+    return migrationDescriptorMap.get(from + "-" + to);
+  }
+
+  /**
+   * Add a static resource path to the existing static resources.
+   *
+   * @param path the desired path
+   */
+  protected final void addStaticResource(String path) {
+    staticResources.add(path);
+  }
+
+  /**
+   * Add a version to the versions supported.
+   *
+   * @param version the version to add
+   */
+  protected final void addVersion(String version) {
+    versions.add(version);
+  }
+
+  /**
+   * Add versions to the versions supported.
+   *
+   * @param versions the versions to add
+   */
+  protected final void addVersions(String... versions) {
+    this.versions.addAll(Arrays.asList(versions));
+  }
+
+  /**
+   * Add a migration descriptor to the map.
+   *
+   * @param migrationDescriptor the migration descriptor
+   */
+  protected final void addMigrationDescriptor(MigrationDescriptor migrationDescriptor) {
+    migrationDescriptorMap.put(migrationDescriptor.getVersionFrom() + "-" + migrationDescriptor.getVersionTo(), migrationDescriptor);
   }
 
 }
