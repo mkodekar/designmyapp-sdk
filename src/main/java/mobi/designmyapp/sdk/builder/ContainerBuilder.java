@@ -13,6 +13,7 @@
 package mobi.designmyapp.sdk.builder;
 
 
+import mobi.designmyapp.common.container.manager.ContainerManager;
 import mobi.designmyapp.common.container.model.Container;
 import mobi.designmyapp.common.engine.builder.Builder;
 import mobi.designmyapp.common.engine.model.Template;
@@ -30,6 +31,14 @@ public abstract class ContainerBuilder<T extends Template> implements Builder<T>
   }
 
   /**
+   * This method should handle all Container launches from your ContainerManager.
+   * This ensures assets have been previously compressed and made available as a bundle.zip file 
+   * @param template the template
+   * @param containerManager the container manager
+   */
+  public abstract void launch(T template, ContainerManager containerManager);
+  
+  /**
    * This method is used to format what you want the API to return.
    * By default, when you start one or more containers, it will output all containers complete information.
    * Usually, only some of the links make sense for you.
@@ -41,5 +50,4 @@ public abstract class ContainerBuilder<T extends Template> implements Builder<T>
   public Object formatResponse(Container... containers) {
     return containers;
   }
-
 }

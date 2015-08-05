@@ -189,6 +189,15 @@ public abstract class Generator<T extends Template> {
   }
 
   /**
+   * Add static resource paths to the existing static resources.
+   *
+   * @param paths the desired paths
+   */
+  protected final void addStaticResources(String... paths) {
+    staticResources.addAll(Arrays.asList(paths));
+  }
+
+  /**
    * Add a version to the versions supported.
    *
    * @param version the version to add
