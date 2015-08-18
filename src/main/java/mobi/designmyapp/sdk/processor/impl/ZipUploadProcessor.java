@@ -12,76 +12,53 @@
  */
 package mobi.designmyapp.sdk.processor.impl;
 
-import mobi.designmyapp.common.engine.model.UploadRequest;
-import mobi.designmyapp.common.util.UtilsFactory;
-import mobi.designmyapp.sdk.processor.ArchiveProcessor;
-import mobi.designmyapp.sdk.processor.UploadProcessor;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import mobi.designmyapp.common.engine.model.UploadRequest;
+import mobi.designmyapp.common.util.UtilsFactory;
+import mobi.designmyapp.sdk.processor.ArchiveExtractorUploadProcessor;
+import mobi.designmyapp.sdk.processor.UploadProcessor;
+
 /**
- * Created by Loïc Ortola on 7/30/14
- * This class provides an implementation of an UploadProcessor (@see mobi.designmyapp.sdk.processor.UploadProcessor)
- * to add resources from a zip to the application. It furnishes a way to upload files from a zip into the application.
+ * Created by Loïc Ortola on 7/30/14 This class provides an implementation of an
+ * {@link AssetUploadProcessorAdapter} to add resources from a zip to the
+ * application. It furnishes a way to extract files from a zip into the
+ * application. Process method will by extract Zip content, & call process
+ * method of the wrapped ArchiveProcessor.
  */
-public class ZipUploadProcessor implements UploadProcessor {
+public class ZipUploadProcessor<T> extends ArchiveExtractorUploadProcessor<T> {
+
 
   public static final String NAMESPACE = "zip";
 
   private List<String> validExtensions;
+
   /**
-   * Default constructor.
+   * Instantiates a new zip upload processor, to handle zip archive extraction.
    */
   public ZipUploadProcessor() {
+
     validExtensions = new ArrayList<>();
     validExtensions.add("zip");
   }
 
   /**
-   * Retrieve namespace : representing where the uploaded file will be stored.
-   */
-  @Override
-  public String getNamespace() {
-    return NAMESPACE;
-  }
-
-  /**
-   * Process the upload request.
+   * Extracts the file contained in the given {@link UploadRequest}.
    *
-   * @param request the UploadRequest. @see mobi.designmyapp.common.engine.model.UploadRequest.
-   * @param destDir the destination directory. Contains all resources already uploaded through this implementation.
-   * @return the uploaded resources
-   * @throws IOException
+   * @param request the upload request containing file to extract.
+   * @param archiveFile the arcive file to extract.
+   * @param unhandledFiles the files unhandled by the wrapped
+   *          {@link UploadProcessor}
+   * @return the root directory where files have been extracted.
+   * @throws IOException Signals that an I/O exception has occurred while
+   *           extracting.
    */
   @Override
-  public Object process(UploadRequest request, File destDir) throws IOException {
-
-    File tmpZipFile = new File(destDir, "tmp.zip");
-
-    // Write the stream to a new file
-    UtilsFactory.getIOUtils().copyInputStreamToFile(request.getObj(), tmpZipFile);
-
-    String zipHash = UtilsFactory.getDigestUtils().createHash(tmpZipFile);
-    File zipFile = new File(destDir, zipHash + ".zip");
-
-    if (!zipFile.exists()) {
-      UtilsFactory.getIOUtils().moveFile(tmpZipFile, zipFile);
-    } else {
-      tmpZipFile.delete();
-    }
-
-    List<String> unhandledFiles = new ArrayList<>();
-
-    ArchiveProcessor archiveProcessor = ((ArchiveProcessor) request.getResources());
-
-    UtilsFactory.getZipUtils().unzip(zipFile, archiveProcessor.getValidExtensions(), unhandledFiles);
-
-    File zipDir = new File(destDir, zipHash);
-
-    return archiveProcessor.process(request, zipDir, unhandledFiles);
+  protected File extract(UploadRequest request, File archiveFile, List<String> unhandledFiles) throws IOException {
+    return UtilsFactory.getZipUtils().unzip(archiveFile, getUploadProcessor().getValidExtensions(), unhandledFiles);
   }
 
   /**
@@ -91,4 +68,11 @@ public class ZipUploadProcessor implements UploadProcessor {
   public List<String> getValidExtensions() {
     return validExtensions;
   }
+
+  @Override
+  public String getNamespace() {
+    return NAMESPACE;
+  }
+
 }
+

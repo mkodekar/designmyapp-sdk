@@ -12,15 +12,16 @@
  */
 package mobi.designmyapp.sdk.processor.impl;
 
-import mobi.designmyapp.common.engine.model.Image;
-import mobi.designmyapp.common.engine.model.UploadRequest;
-import mobi.designmyapp.common.util.UtilsFactory;
-import mobi.designmyapp.sdk.processor.UploadProcessor;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import mobi.designmyapp.common.engine.model.Image;
+import mobi.designmyapp.common.engine.model.UploadRequest;
+import mobi.designmyapp.common.engine.service.ContextService;
+import mobi.designmyapp.common.util.UtilsFactory;
+import mobi.designmyapp.sdk.processor.UploadProcessor;
 
 /**
  * Created by Loïc Ortola on 7/30/14
@@ -39,7 +40,7 @@ public class IconUploadProcessor implements UploadProcessor<Image> {
    * Constructor.
    */
   public IconUploadProcessor() {
-    this.iconFileName = "icon.png";
+    iconFileName = "icon.png";
   }
 
   /**
@@ -69,7 +70,8 @@ public class IconUploadProcessor implements UploadProcessor<Image> {
   @Override
   public Image process(UploadRequest request, File destDir) throws IOException {
 
-    String url = UtilsFactory.getContextService().createUrl(NAMESPACE, iconFileName, request.getApiKey());
+    ContextService contextService = UtilsFactory.getContextService();
+    String url = contextService.createUrl(NAMESPACE, iconFileName);
 
     UtilsFactory.getImageUtils().resizeImageToIcon(request.getObj(), new File(destDir, iconFileName));
 

@@ -13,18 +13,18 @@
 package mobi.designmyapp.sdk.processor.impl;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import mobi.designmyapp.common.engine.model.Image;
 import mobi.designmyapp.common.engine.model.UploadRequest;
 import mobi.designmyapp.common.util.DigestUtils;
 import mobi.designmyapp.common.util.IOUtils;
 import mobi.designmyapp.common.util.UtilsFactory;
 import mobi.designmyapp.sdk.processor.UploadProcessor;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Loïc Ortola on 7/30/14
@@ -98,7 +98,6 @@ public class ImageUploadProcessor implements UploadProcessor<Image> {
         .originalName(request.getOriginalFilename())
         .prepareUrl()
         .namespace(namespace)
-        .apiKey(request.getApiKey())
         .build();
 
   }
