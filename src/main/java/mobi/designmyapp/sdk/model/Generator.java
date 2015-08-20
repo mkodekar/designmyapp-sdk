@@ -145,10 +145,6 @@ public abstract class Generator<T extends Template> {
     return null;
   }
 
-  public List<String> getTasks() {
-    return Collections.emptyList();
-  }
-
   /**
    * Retrieve the template static resources files
    * such as data or image files.
