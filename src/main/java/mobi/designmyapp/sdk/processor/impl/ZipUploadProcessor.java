@@ -20,7 +20,6 @@ import java.util.List;
 import mobi.designmyapp.common.engine.model.UploadRequest;
 import mobi.designmyapp.common.util.UtilsFactory;
 import mobi.designmyapp.sdk.processor.ArchiveExtractorUploadProcessor;
-import mobi.designmyapp.sdk.processor.UploadProcessor;
 
 /**
  * Created by Loïc Ortola on 7/30/14 This class provides an implementation of an
