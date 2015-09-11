@@ -15,6 +15,9 @@ package mobi.designmyapp.sdk.builder;
 import mobi.designmyapp.common.engine.builder.Builder;
 import mobi.designmyapp.common.engine.model.Template;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by Alexandre Nunesse on 7/16/14.
  * The AndroidBuilder will allow you to do the final steps before your apk is built:
@@ -26,4 +29,17 @@ public abstract class AndroidBuilder<U extends Template> implements Builder<U> {
   public final Type getType() {
     return Type.ANDROID;
   }
+
+/**
+ * This method declares the necessary build steps related to the current template build cycle.
+ * For instance, you could have the following build step keys: [ "init_containers", "download_assets", "resize_assets", "pre_rendering" ].
+ * The build step keys will be exposed on the API.
+ * @param template the template
+ * @return the list of build step keys
+ **/
+  public List<String> getBuildSteps(U template) {
+    return Collections.emptyList();
+  }
+
 }
+
