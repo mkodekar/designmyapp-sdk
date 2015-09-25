@@ -15,6 +15,8 @@ package mobi.designmyapp.sdk.processor;
 
 import mobi.designmyapp.common.engine.model.Template;
 
+import java.util.List;
+
 /**
  * Created by Loïc Ortola on 07/07/14.
  * ContentProcessor is a descriptor class used to process all CPU-bound business-logic before a template gets generated.
@@ -28,5 +30,14 @@ public interface ContentProcessor<T extends Template> {
    * @param template the requested template object.
    */
   void process(T template);
+
+  /**
+   * This method declares the necessary build steps related to the current template build cycle.
+   * For instance, you could have the following build step keys: [ "init_files", "download_assets", "resize_assets", "pre_rendering" ].
+   * The build step keys will be exposed on the API.
+   * @param template the template for the build
+   * @return the list of build step keys
+   */
+  List<String> getBuildSteps(Template template);
 
 }
